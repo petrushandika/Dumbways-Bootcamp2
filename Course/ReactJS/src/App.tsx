@@ -1,8 +1,12 @@
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import State from "./components/State"
 
 function App() {
   return (
-    <Home/>
+    <div>
+      {/* <Home /> */}
+      <State/>
+    </div>
   );
 }
 
