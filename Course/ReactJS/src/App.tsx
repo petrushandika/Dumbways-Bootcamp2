@@ -1,12 +1,26 @@
-// import Home from "./pages/Home";
-import State from "./components/State"
+import { useState } from "react";
+import { Route, Routes, Outlet, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
+  const PrivateRoute = () => {
+    const [isLogin, setIsLogin] = useState<boolean>(false)
+
+    if (isLogin) return <Outlet/>
+
+    return <Navigate to={"/login"}/>
+  }
+
   return (
-    <div>
-      {/* <Home /> */}
-      <State/>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route element={<PrivateRoute/>}>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
+    </Routes>
   );
 }
 
