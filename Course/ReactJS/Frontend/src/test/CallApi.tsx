@@ -1,4 +1,4 @@
-import { VStack, Heading } from "@chakra-ui/react";
+import { VStack, Heading, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { api } from "../libs/Api";
 
@@ -7,7 +7,7 @@ function CallApi() {
 
   async function getPosts() {
     try {
-      const response = await api.get("");
+      const response = await api.get("/home");
       console.log(response.data);
       setPosts(response.data);
     } catch (error) {
@@ -23,10 +23,10 @@ function CallApi() {
     <VStack>
       <Heading>Testing API</Heading>
       {posts.map((post) => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-        </div>
+        <VStack key={post.id}>
+          <Text>{post.title}</Text>
+          <Text>{post.body}</Text>
+        </VStack>
       ))}
     </VStack>
   );
